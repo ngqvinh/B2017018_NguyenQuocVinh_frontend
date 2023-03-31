@@ -88,6 +88,7 @@ export default {
         contactStrings(){
             return this.contacts.map((contact) => {
                 const {name, email, address, phone} = contact;
+                return [name, email, address, phone].join("");
             });
         },
 
@@ -111,11 +112,28 @@ export default {
         async retrieveContacts(){
             try {
                 this.contacts = await ContactService.getAll();
-                this.refreshList();
+                //this.refreshList();
             } catch (error) {
                 console.log(error);
             }
         },
+
+        refreshList(){
+            this.retrieveContacts();
+            this.activeIndex = -1;
+        },
+
+        async removeAllContacts(){
+            if (confirm("Bạn muốn xóa tất cả Liên hệ?")){
+                try {
+                    await ContactService.deteleAll();
+                    this.refreshList();
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        },
+
         goToAddContact(){
             this.$router.push({ name: "contact.add"});
         },
