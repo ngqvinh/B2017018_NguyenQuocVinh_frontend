@@ -11,11 +11,12 @@
 </template>
 
 <script>
-import contactForm from "@/components/ContactForm.vue";
+import ContactForm from "@/components/ContactForm.vue";
+import ContactService from "@/services/contact.service";
 
 export default {
     components: {
-        contactForm,
+        ContactForm,
     },
     props: {
         id: { type: String, required: true },

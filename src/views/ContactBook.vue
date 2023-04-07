@@ -126,7 +126,7 @@ export default {
         async removeAllContacts(){
             if (confirm("Bạn muốn xóa tất cả Liên hệ?")){
                 try {
-                    await ContactService.deteleAll();
+                    await ContactService.deleteAll();
                     this.refreshList();
                 } catch (error) {
                     console.log(error);
